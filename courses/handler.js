@@ -116,15 +116,15 @@ module.exports.updateCourses = (event, context, callback) => {
   const data = JSON.parse(event.body);
   const id = event.pathParameters.id;
 
-  const course = new Course({
-    name: data.name,
-    provider: data.provider,
-    courseUrl: data.courseUrl,
-    logo: data.logo,
-    path: data.path,
-    download: data.download,
-    processed: data.processed
-  });
+  // const course = new Course({
+  //   name: data.name,
+  //   provider: data.provider,
+  //   courseUrl: data.courseUrl,
+  //   logo: data.logo,
+  //   path: data.path,
+  //   download: data.download,
+  //   processed: data.processed
+  // });
 
   Course.findByIdAndUpdate(id, { $set: { 
     name: data.name,
