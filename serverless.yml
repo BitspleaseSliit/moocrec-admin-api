@@ -17,6 +17,9 @@ service: moocrec-admin-api # NOTE: update this with your service name
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
 
+plugins:
+  - serverless-offline
+
 provider:
   name: aws
   runtime: nodejs8.10
@@ -57,6 +60,20 @@ provider:
 functions:
   hello:
     handler: handler.hello
+    events:
+      - http:
+          method: get
+          path: hello
+          cors: true
+
+  getAllCourses:
+    handler: courses/handler.getAllCourses
+    events:
+      - http:
+          method: get
+          path: courses/all
+          cors: true
+
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
