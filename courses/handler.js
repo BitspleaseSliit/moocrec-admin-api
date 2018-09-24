@@ -75,7 +75,67 @@ module.exports.saveCourses = (event, context, callback) => {
   
   console.log('saveCourses()');
 
-  Course.find({ logo: event.pathParameters.logo }).exec().then(function(courses) {
+  const data = JSON.parse(event.body);
+
+  const course = new Course({
+    name: data.name,
+    provider: data.provider,
+    courseUrl: data.courseUrl,
+    logo: data.logo,
+    path: data.path,
+    download: data.download
+  });
+
+  course.save().then(function(courses) {
+
+    const response = {
+      statusCode: 200,
+      body: JSON.stringify({courses}),
+    };
+
+    callback(null, response);
+
+  }).catch(function(err) {
+    console.error(err);
+
+    const response = {
+      statusCode: 500
+    };
+
+    callback(null, response);
+
+  });
+  
+};
+
+
+module.exports.updateCourses = (event, context, callback) => {
+  
+  console.log('updateCourses()');
+
+  const data = JSON.parse(event.body);
+  const id = event.pathParameters.id;
+
+  const course = new Course({
+    name: data.name,
+    provider: data.provider,
+    courseUrl: data.courseUrl,
+    logo: data.logo,
+    path: data.path,
+    download: data.download,
+    processed: data.processed
+  });
+
+  Course.findByIdAndUpdate(id, { $set: { 
+    name: data.name,
+    provider: data.provider,
+    courseUrl: data.courseUrl,
+    logo: data.logo,
+    path: data.path,
+    download: data.download,
+    processed: data.processed
+  }
+  }).then(function(courses) {
 
     const response = {
       statusCode: 200,

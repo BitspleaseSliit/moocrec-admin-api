@@ -82,6 +82,22 @@ functions:
           path: courses/logo/{logo}
           cors: true
 
+  saveCourses:
+    handler: courses/handler.saveCourses
+    events:
+      - http:
+          method: post
+          path: courses
+          cors: true
+
+  findByIdAndUpdate:
+    handler: courses/handler.updateCourses
+    events:
+      - http:
+          method: post
+          path: courses/update/{id}
+          cors: true
+
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

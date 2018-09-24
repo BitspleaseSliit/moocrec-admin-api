@@ -18,6 +18,17 @@ var CourseSchema = new Schema({
     logo: {
         type: String
     },
+    path: {
+        type: String
+    },
+    download: {
+        type: Boolean,
+        default: false
+    },
+    processed: {
+        type: Boolean,
+        default: false
+    },
     videoStyle: {
         talkingHead: {
              type: Number   
