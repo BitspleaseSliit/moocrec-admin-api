@@ -108,7 +108,6 @@ module.exports.saveCourses = (event, context, callback) => {
   
 };
 
-
 module.exports.updateCourses = (event, context, callback) => {
   
   console.log('updateCourses()');
