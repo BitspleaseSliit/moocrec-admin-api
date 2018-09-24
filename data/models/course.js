@@ -1,10 +1,10 @@
 'use strict';
 
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-const CourseSchema = new Schema({
+var CourseSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -54,6 +54,6 @@ const CourseSchema = new Schema({
     }
 });
 
-const Course = mongoose.model('Course', CourseSchema);
+var Course = mongoose.model('Course', CourseSchema);
 
 module.exports = Course;

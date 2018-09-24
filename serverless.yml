@@ -65,13 +65,21 @@ functions:
           method: get
           path: hello
           cors: true
-
+# 
   getAllCourses:
     handler: courses/handler.getAllCourses
     events:
       - http:
           method: get
           path: courses/all
+          cors: true
+
+  getCoursesByLogo:
+    handler: courses/handler.getCoursesByLogo
+    events:
+      - http:
+          method: get
+          path: courses/logo/{logo}
           cors: true
 
 

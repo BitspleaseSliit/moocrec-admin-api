@@ -1,8 +1,8 @@
 'use strict';
 
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
-const config = require('../config/database');
+var config = require('../config/database');
 var Course = require('../data/models/course');
 var User = require('../data/models/user');
 
@@ -23,6 +23,59 @@ module.exports.getAllCourses = (event, context, callback) => {
   console.log('getAllCourses()');
 
   Course.find().exec().then(function(courses) {
+
+    const response = {
+      statusCode: 200,
+      body: JSON.stringify({courses}),
+    };
+
+    callback(null, response);
+
+  }).catch(function(err) {
+    console.error(err);
+
+    const response = {
+      statusCode: 500
+    };
+
+    callback(null, response);
+
+  });
+  
+};
+
+
+module.exports.getCoursesByLogo = (event, context, callback) => {
+  
+  console.log('getCoursesByLogo(logo)');
+
+  Course.find({ logo: event.pathParameters.logo }).exec().then(function(courses) {
+
+    const response = {
+      statusCode: 200,
+      body: JSON.stringify({courses}),
+    };
+
+    callback(null, response);
+
+  }).catch(function(err) {
+    console.error(err);
+
+    const response = {
+      statusCode: 500
+    };
+
+    callback(null, response);
+
+  });
+  
+};
+
+module.exports.saveCourses = (event, context, callback) => {
+  
+  console.log('saveCourses()');
+
+  Course.find({ logo: event.pathParameters.logo }).exec().then(function(courses) {
 
     const response = {
       statusCode: 200,
